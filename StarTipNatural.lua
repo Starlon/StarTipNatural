@@ -106,6 +106,11 @@ local txt = (UnitCalling(unit) or "") .. (UnitTagText(unit) or "")
 if txt == "" then return nil end
 return txt
 ]],
+		colorLeft = [[
+local details = Inspect.Unit.Detail(unit)
+if details.calling then return ClassColor(unit) end
+return RelationColor(unit)
+]],
 		enabled = true
 	},
 
@@ -150,8 +155,12 @@ StarTip:EstablishBars(bars)
 
 local borders = {
 	expression = [[
-GetTime = GetTime or Inspect.Time.Frame
-return GetTime() * 100, .7, .6
+if UnitCalling(unit) then 
+	local r, g, b = ClassColor(unit)
+	return r, g, b, .5
+end
+local r, g, b = RelationColor(unit)
+return r, g, b, .5
 ]],
 	update = 300,
 	repeating = true
