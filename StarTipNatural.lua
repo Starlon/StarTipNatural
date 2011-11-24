@@ -46,10 +46,10 @@ return UnitRelationColor(unit)
 		id = "info",
 		name = "Info",
 		left = [[
-		return "Level"
+return "Level"
 ]],
 		right = [[
-		return UnitLevel(unit)
+return UnitLevel(unit) .. " " .. (UnitRace(unit) or "")
 ]],
 		colorLeft = [[
 return UnitRelationColor(unit)
@@ -99,6 +99,17 @@ return size and "Public  Group: " .. size .. members
 		enabled = true
 	},
 	[7] = {
+		id = 'tag',
+		name = "Tag",
+		left = [[
+local txt = (UnitCalling(unit) or "") .. (UnitTagText(unit) or "")
+if txt == "" then return nil end
+return txt
+]],
+		enabled = true
+	},
+
+	[8] = {
 		id = "space",
 		name = "Space",
 		left = "return ' '",
@@ -136,3 +147,13 @@ return GradientHealth(UnitHealth(unit) / UnitHealthMax(unit))
 
 }
 StarTip:EstablishBars(bars)
+
+local borders = {
+	expression = [[
+GetTime = GetTime or Inspect.Time.Frame
+return GetTime() * 100, .7, .6
+]],
+	update = 300,
+	repeating = true
+}
+StarTip:EstablishBorders(borders)
