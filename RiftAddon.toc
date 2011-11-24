@@ -17,7 +17,7 @@ RunOnStartup = {
 }
 
 Dependencies = {
-  StarTip = {"optional", "before"}
+  StarTip = {"required", "before"}
 }
 
 SavedVariables = {
