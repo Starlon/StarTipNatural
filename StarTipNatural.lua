@@ -88,17 +88,6 @@ return UnitRelationColor(unit..'.target')
 		enabled = true
 	},
 	[6] = {
-		id = "group",
-		name = "Group",
-		left = [[
-local size = UnitPublicSize(unit)
-local members = size and (size == 1 and " member") or " members"
-
-return size and "Public  Group: " .. size .. members
-]],
-		enabled = true
-	},
-	[7] = {
 		id = 'tag',
 		name = "Tag",
 		left = [[
@@ -110,6 +99,17 @@ return txt
 local details = Inspect.Unit.Detail(unit)
 if details.calling then return ClassColor(unit) end
 return RelationColor(unit)
+]],
+		enabled = true
+	},
+	[7] = {
+		id = "group",
+		name = "Group",
+		left = [[
+local size = UnitPublicSize(unit)
+local members = size and (size == 1 and " member") or " members"
+
+return size and "Public  Group: " .. size .. members
 ]],
 		enabled = true
 	},
