@@ -167,13 +167,4 @@ return r, g, b, .5
     repeating = true
 }
 
-local stopped
-local function update()
-    if stopped then return end
-    if StarTip:Ready() then
-        StarTip:Establish("StarTipNatural", profile)
-        stopped = true
-    end
-end
-
-table.insert(Event.System.Update.Begin, {update, "StarTipDefaults", "update"})
+StarTip:InitializeAddon("StarTip Natural", profile)
